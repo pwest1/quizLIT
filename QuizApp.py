@@ -58,15 +58,16 @@ class QuizApp:
         self.custom_answer_entry1.pack(pady=10)
 
         submit_button = tk.Button(self.add_question_window, text='Submit', command=self.add_custom_question,
-                              font=("Futura", 14, 'bold'), height="2", width="10", bg='white', fg='black',
-                              highlightthickness=0, border=0)
+                                  font=("Futura", 14, 'bold'), height="2", width="10", bg='white', fg='black',
+                                  highlightthickness=0, border=0)
         submit_button.pack(pady=10)
 
     def open_quiz_window(self):
         self.quiz_question_window = tk.Toplevel(self.root)
         self.quiz_question_window.title("Quiz")
         self.quiz_question_window.configure(bg="royalblue3")
-        self.quiz_question_window.geometry("300x300")
+        self.quiz_question_window.geometry("600x300")
+        self.quiz_question_window.resizable(width=False, height=False)
 
         # question label
         self.quiz_label = tk.Label(self.quiz_question_window, text="", font=("Futura", 14, 'bold'), bg="royalblue3",
@@ -80,16 +81,20 @@ class QuizApp:
         self.selected_option = tk.StringVar()
 
         # Create RadioButtons with an initial value (empty string)
-        self.rb1 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
+        self.rb1 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, font=('Futura', 12),
+                                  bg="royalblue3", fg='white')
         # self.rb1.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb2 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
+        self.rb2 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, font=('Futura', 12),
+                                  bg="royalblue3", fg='white')
         # self.rb2.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb3 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
+        self.rb3 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, font=('Futura', 12),
+                                  bg="royalblue3", fg='white')
         # self.rb3.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb4 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
+        self.rb4 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, font=('Futura', 12),
+                                  bg="royalblue3", fg='white')
         # self.rb4.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
         self.quiz_question_window.rowconfigure(0, weight=1)
         self.quiz_question_window.columnconfigure(0, weight=1)
@@ -103,7 +108,7 @@ class QuizApp:
         submit_button = tk.Button(
             self.quiz_question_window,
             text='Submit',
-            command=self.add_custom_question,
+            command=self.check_answer,
             font=("Futura", 14, 'bold'),
             height="2",
             width="10",
