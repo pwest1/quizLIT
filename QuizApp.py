@@ -7,9 +7,10 @@ from tkinter import messagebox
 class QuizApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Quiz Creator")
-        self.root.configure(bg="grey")
-        self.root.geometry("300x500")
+        self.root.title("QuizLIT")
+        self.root.configure(bg="royalblue3")
+        self.root.geometry("800x600")
+        self.root.resizable(width=False, height=False)
 
         self.question_list = QuestionList()
         self.wrong_answers = ["Chicago", "New York", "Toronto", "Mexico City", "Orlando", "Santa Ana", "Long Beach"]
@@ -17,40 +18,47 @@ class QuizApp:
         self.score = 0
         self.quiz_started = False
 
-        self.quiz_label = tk.Label(root, text="QuizLIT", font=("Arial", 12), bg="grey")
-        self.quiz_label.pack(pady=10)
+        self.quiz_label = tk.Label(root, text="QuizLIT", font=("Futura", 50, 'bold'), bg="royalblue3")
+        self.quiz_label.pack(pady=25)
 
         self.add_question_button = tk.Button(root, text="Add Question", command=self.add_question_button_clicked,
-                                             font=("Arial", 12))
-        self.add_question_button.pack()
+                                             font=("Futura", 14, 'bold'), height="2", width="10")
+        self.add_question_button.pack(pady=10)
 
-        self.start_quiz_button = tk.Button(root, text="Start Quiz", command=self.start_quiz, font=("Arial", 12)
-                                           )
-        self.start_quiz_button.pack()
+        self.start_quiz_button = tk.Button(root, text="Start Quiz", command=self.start_quiz, font=("Futura", 14, 'bold'),
+                                           height="2", width="10")
+        self.start_quiz_button.pack(pady=10)
 
         self.score_label = tk.Label(root, text="text section", font=("Arial", 12), bg="red")
         self.score_label.pack(pady=10)
 
     def open_add_question_window(self):
         self.add_question_window = tk.Toplevel(self.root)
-        self.add_question_window.title("Add Question")
-        self.add_question_window.configure(bg="orange")
+        self.add_question_window.title("Add Term")
+        self.add_question_window.configure(bg="royalblue3")
+        self.add_question_window.geometry("250x300")
+        self.add_question_window.resizable(width=False, height=False)
 
-        question_label = tk.Label(self.add_question_window, text="Enter Question:", font=("Arial", 12), bg="lightblue")
+        question_label = tk.Label(self.add_question_window, text="Enter Question:", font=("Futura", 14, 'bold'),
+                                  bg='royalblue3', fg='white')
         question_label.pack(pady=10)
 
-        self.custom_question_entry = tk.Entry(self.add_question_window, font=("Arial", 12))
+        self.custom_question_entry = tk.Entry(self.add_question_window, font=("Futura", 12),
+                                              highlightbackground='white')
         self.custom_question_entry.pack(pady=10)
 
-        answer_label = tk.Label(self.add_question_window, text="Correct Answer:", font=("Tacoma", 12), bg="lightgreen")
+        answer_label = tk.Label(self.add_question_window, text="Enter Answer:", font=("Futura", 14, 'bold'),
+                                bg='royalblue3', fg='white')
         answer_label.pack(pady=10)
 
-        self.custom_answer_entry1 = tk.Entry(self.add_question_window, font=("Arial", 12))
+        self.custom_answer_entry1 = tk.Entry(self.add_question_window, font=("Futura", 12),
+                                             highlightbackground='white')
         self.custom_answer_entry1.pack(pady=10)
 
-        submit_button = tk.Button(self.add_question_window, text="Submit", command=self.add_custom_question,
-                                  font=("Arial", 12))
-        submit_button.pack()
+        submit_button = tk.Button(self.add_question_window, text='Submit', command=self.add_custom_question,
+                              font=("Futura", 14, 'bold'), height="2", width="10", bg='white', fg='black',
+                              highlightthickness=0, border=0)
+        submit_button.pack(pady=10)
 
     def open_quiz_window(self):
         self.quiz_question_window = tk.Toplevel(self.root)
