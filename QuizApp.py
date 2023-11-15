@@ -9,7 +9,7 @@ class QuizApp:
         self.root = root
         self.root.title("QuizLIT")
         self.root.configure(bg="royalblue3")
-        self.root.geometry("800x600")
+        self.root.geometry("500x400")
         self.root.resizable(width=False, height=False)
 
         self.question_list = QuestionList()
@@ -22,15 +22,17 @@ class QuizApp:
         self.quiz_label.pack(pady=25)
 
         self.add_question_button = tk.Button(root, text="Add Question", command=self.add_question_button_clicked,
-                                             font=("Futura", 14, 'bold'), height="2", width="10")
+                                             font=("Futura", 14, 'bold'), height="2", width="10", bg='white',
+                                             fg='black', highlightthickness=0, border=0)
         self.add_question_button.pack(pady=10)
 
-        self.start_quiz_button = tk.Button(root, text="Start Quiz", command=self.start_quiz, font=("Futura", 14, 'bold'),
-                                           height="2", width="10")
+        self.start_quiz_button = tk.Button(root, text="Start Quiz", command=self.start_quiz,
+                                           font=("Futura", 14, 'bold'), height="2", width="10", bg='white', fg='black',
+                                           highlightthickness=0, border=0)
         self.start_quiz_button.pack(pady=10)
 
-        self.score_label = tk.Label(root, text="text section", font=("Arial", 12), bg="red")
-        self.score_label.pack(pady=10)
+        self.score_label = tk.Label(root, text="", font=("Futura", 18, 'bold'), bg='royalblue3', fg='white')
+        self.score_label.pack(pady=25)
 
     def open_add_question_window(self):
         self.add_question_window = tk.Toplevel(self.root)
@@ -63,30 +65,31 @@ class QuizApp:
     def open_quiz_window(self):
         self.quiz_question_window = tk.Toplevel(self.root)
         self.quiz_question_window.title("Quiz")
-        self.quiz_question_window.configure(bg="lightgrey")
-        self.quiz_question_window.geometry("300x200")
+        self.quiz_question_window.configure(bg="royalblue3")
+        self.quiz_question_window.geometry("300x300")
 
         # question label
-        self.quiz_label = tk.Label(self.quiz_question_window, text="", font=("Tacoma", 12), bg="lightgrey", fg="black")
+        self.quiz_label = tk.Label(self.quiz_question_window, text="", font=("Futura", 14, 'bold'), bg="royalblue3",
+                                   fg="white")
         self.quiz_label.pack(side=tk.TOP, pady=10)
 
         # Create Radiobuttons
         options_frame = tk.Frame(self.quiz_question_window)
         options_frame.pack(pady=20)
-        options_frame.configure(bg="lightgrey")
+        options_frame.configure(bg="royalblue3")
         self.selected_option = tk.StringVar()
 
         # Create RadioButtons with an initial value (empty string)
-        self.rb1 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="lightgrey")
+        self.rb1 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
         # self.rb1.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb2 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="lightgrey")
+        self.rb2 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
         # self.rb2.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb3 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="lightgrey")
+        self.rb3 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
         # self.rb3.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
 
-        self.rb4 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="lightgrey")
+        self.rb4 = tk.Radiobutton(options_frame, value="", variable=self.selected_option, bg="royalblue3", fg='white')
         # self.rb4.pack(side=tk.TOP, anchor=tk.W, padx=10, pady=5)
         self.quiz_question_window.rowconfigure(0, weight=1)
         self.quiz_question_window.columnconfigure(0, weight=1)
@@ -99,8 +102,15 @@ class QuizApp:
             rb.grid(row=row_num, column=col_num, sticky=tk.W, padx=20, pady=5)
         submit_button = tk.Button(
             self.quiz_question_window,
-            text="Submit",
-            command=self.check_answer, highlightbackground="lightgrey"
+            text='Submit',
+            command=self.add_custom_question,
+            font=("Futura", 14, 'bold'),
+            height="2",
+            width="10",
+            bg='white',
+            fg='black',
+            highlightthickness=0,
+            border=0
         )
         submit_button.pack(side=tk.BOTTOM, pady=15)
 
